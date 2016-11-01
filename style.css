@@ -1,0 +1,14 @@
+body {
+  background-color: #f2f2f2;
+}
+header {
+  height: 12px;
+}
+.container {
+  height: 205px;
+  width: 345px;
+}
+.container:hover {
+  box-sizing: border-box;
+  border: 2px solid #dadada;
+}
