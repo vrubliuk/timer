@@ -1,14 +1,51 @@
 body {
   background-color: #f2f2f2;
+  /*border: solid black 1px;*/
+  margin: 0px;
+  padding: 0px;
 }
+
 header {
   height: 12px;
 }
-.container {
+.timer-box {
   height: 205px;
-  width: 345px;
+  max-width: 344px;
 }
-.container:hover {
+.timer-box {
   box-sizing: border-box;
   border: 2px solid #dadada;
+}
+footer {
+height: 48px;
+background-color: #dcdcdc;
+bottom: 0px;
+left: 0px;
+right: 0px;
+position: absolute;
+
+}
+#new {
+  width: 68px;
+  height: 48px;
+  right: 68px;
+  position: absolute;
+  /*box-sizing: border-box;
+  border: solid black 1px;*/
+  text-align:center;
+}
+#img-new, #img-manage {
+ margin-top: 14px;
+}
+#manage {
+  width: 68px;
+  height: 48px;
+  position: absolute;
+  right: 0px;
+  text-align:center;
+  /*box-sizing: border-box;
+  border: solid black 1px;*/
+}
+footer>div:hover {
+ background-color: #c6c6c6;
 }
