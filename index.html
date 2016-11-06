@@ -11,48 +11,95 @@
 <body>
 	<header></header>
 
+	<div id="body">
 
-	<main>
-		<div class="timer-box">
-			<div id="timer" >
-				<span id="hours">00</span>
-				<span>:</span>
-				<span id="minutes">25</span>
-				<span>:</span>
-				<span id="seconds">00</span>
+		<main>
+
+			<div class="timer-box">
+				<div id="timer">
+					<span id="hours">00</span>
+					<span>:</span>
+					<span id="minutes">25</span>
+					<span>:</span>
+					<span id="seconds">00</span>
+				</div>
+				<div id="refresh">
+					<img id="img-refresh" src="images/refresh.png">
+				</div>
+				<div class="progress-pie-chart" data-percent="80">
+					<div class="ppc-progress">
+						<div class="ppc-progress-fill"></div>
+					</div>
+					<div class="ppc-percents">
+						<div class="pcc-percents-wrapper">
+							<img id="img-start" src="images/start.png">
+						</div>
+					</div>
+				</div>
+				<div id="expand">
+					<img id="img-expand" src="images/expand.png">
+				</div>
+				<div id="timer-name">
+					Timer
+				</div>
+				<div id="full-time">
+					<span id="full-hours">00</span>
+					<span>:</span>
+					<span id="full-minutes">25</span>
+					<span>:</span>
+					<span id="full-seconds">00</span>
+				</div>
 			</div>
-			<div id="refresh" >
-				<img id="img-refresh" src="images/refresh.png">
+
+			<div class="timer-box">
+				<div id="timer">
+					<span id="hours">00</span>
+					<span>:</span>
+					<span id="minutes">25</span>
+					<span>:</span>
+					<span id="seconds">00</span>
+				</div>
+				<div id="refresh">
+					<img id="img-refresh" src="images/bin.png">
+				</div>
+				<div class="progress-pie-chart" data-percent="80">
+					<div class="ppc-progress">
+						<div class="ppc-progress-fill"></div>
+					</div>
+					<div class="ppc-percents">
+						<div class="pcc-percents-wrapper">
+							<img id="img-start" src="images/stop.png">
+						</div>
+					</div>
+				</div>
+				<div id="expand">
+					<img id="img-expand" src="images/expand.png">
+				</div>
+				<div id="timer-name">
+					Timer
+				</div>
+				<div id="full-time">
+					<span id="full-hours">00</span>
+					<span>:</span>
+					<span id="full-minutes">25</span>
+					<span>:</span>
+					<span id="full-seconds">00</span>
+				</div>
 			</div>
 
-			<div id="start" >
-				
+		</main>
+
+		<footer>
+			<div id="new">
+				<img id="img-new" src="images/new.png">
+
 			</div>
-
-			<div id="expand" >
-				<img id="img-expand" src="images/expand.png">
+			<div id="manage">
+				<img id="img-manage" src="images/manage.png">
 			</div>
+		</footer>
 
-
-
-
-
-
-		</div>
-	</main>
-
-
-	<footer>
-		<div id="new">
-			<img id="img-new" src="images/new.png">
-
-		</div>
-		<div id="manage">
-			<img id="img-manage" src="images/manage.png">
-		</div>
-	</footer>
-
-
+	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="js.js"></script>
