@@ -3,6 +3,7 @@ body {
   /*border: solid black 1px;*/
   margin: 0px;
   padding: 0px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
@@ -16,6 +17,33 @@ header {
   box-sizing: border-box;
   border: 2px solid #dadada;
 }
+#timer {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0px;
+
+}
+#timer>span {
+  font-size: 42px;
+}
+#refresh {
+  height: 48px;
+  width: 48px;
+}
+#expand {
+  height: 48px;
+  width: 48px;
+}
+#img-refresh, #img-expand {
+  margin-top: 14px;
+  margin-left: 14px;
+}
+#refresh:hover, #expand:hover {
+  background-color:#dadada;
+}
+
+
 footer {
 height: 48px;
 background-color: #dcdcdc;
