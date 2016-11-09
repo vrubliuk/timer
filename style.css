@@ -1,23 +1,20 @@
 body {
   background-color: #f2f2f2;
-  margin: 0px;
-  padding: 0px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 header {
   height: 12px;
 }
-
-#body {
-  display: flex;
-  justify-content: center;
+.container {
+text-align: center;
+font-size: 0px;
 }
-
 .timer-box {
-  height: 205px;
+  height: 204px;
   width: 344px;
-  border: 2px solid #f2f2f2;
-  float: left;
+  border: 2px solid black;
+  display: inline-block;
+  margin: 5px;
 }
 .timer-box:hover {
   box-sizing: context-box;
@@ -35,38 +32,49 @@ header {
 #refresh {
   height: 48px;
   width: 48px;
-  margin-left: 50px;
-  margin-top: 18px;
-  float: left;
-}
-#expand {
-  height: 48px;
-  width: 48px;
-  margin-left: 246px;
-  margin-top: 18px;
-}
-#img-refresh, #img-expand {
-  margin-top: 14px;
-  margin-left: 14px;
-}
-#refresh:hover, #expand:hover {
-  background-color:#dadada;
-}
-#timer-name {
-  margin-top: 14px;
-  text-align: center;
-  color: #616161;
-}
-#full-time {
-  text-align: center;
-  font-weight: bold;
-  font-size: 0px;
-  color: #616161;
-}
-#full-time>span {
-  font-size: 16px;
+  margin-top: 12px;
+  display: inline-block;
 }
 
+#start-stop {
+  height: 60px;
+  width: 60px;
+  margin-left: 42px;
+  margin-top: 4px;
+  border-radius: 50%;
+  box-sizing: context-box;
+  border: 2px solid #c5c5c5;
+  display: inline-block;
+}
+#start-stop:hover {
+  background-color:#dadada;
+}
+
+#edit {
+  height: 48px;
+  width: 48px;
+  margin-left: 42px;
+  margin-top: 12px;
+  display: inline-block;
+}
+
+#img-refresh, #img-edit {
+  margin-top: 14px; 
+
+}
+
+#img-start, #img-stop {
+  margin-top: 20px; 
+}
+
+
+
+#refresh:hover, #edit:hover {
+  background-color:#dadada;
+}
+
+
+/*FOOTER*/
 footer {
 height: 48px;
 background-color: #dcdcdc;
@@ -95,74 +103,4 @@ position: absolute;
 }
 footer>div:hover {
  background-color: #c6c6c6;
-}
-
-
-.progress-pie-chart {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #c5c5c5;
-  position: relative;
-  margin-left: 42px;
-  margin-top: 12px;
-  float: left;
-
-}
-
-.progress-pie-chart.gt-50 {
-  background-color: #616161;
-}
-
-.ppc-progress {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  left: calc(50% - 30px);
-  top: calc(50% - 30px);
-  width: 60px;
-  height: 60px;
-  clip: rect(0, 60px, 60px, 30px);
-}
-
-.ppc-progress .ppc-progress-fill {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  left: calc(50% - 30px);
-  top: calc(50% - 30px);
-  width: 60px;
-  height: 60px;
-  clip: rect(0, 30px, 60px, 0);
-  background: #616161;
-  transform: rotate(60deg);
-}
-
-.gt-50 .ppc-progress {
-  clip: rect(0, 30px, 60px, 0);
-}
-
-.gt-50 .ppc-progress .ppc-progress-fill {
-  clip: rect(0, 60px, 60px, 30px);
-  background: #c5c5c5;
-}
-
-.ppc-percents {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  left: calc(50% - 55.55556px/2);
-  top: calc(50% - 55.55556px/2);
-  width: 55.55556px;
-  height: 55.55556px;
-  background: #f2f2f2;
-}
-.ppc-percents:hover {
-  background: #dadada;
-}
-#img-start {
-  margin-top: 18px;
-  margin-left: 18px;
-  width: 20px;
-  height: 20px;
 }
