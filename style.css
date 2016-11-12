@@ -5,9 +5,37 @@ body {
 header {
   height: 12px;
 }
+#noTimer {
+  color: #919191;
+  font-size: 24px;
+  font-weight: lighter;
+  padding-left: 20px;
+
+}
+#newTimer {
+padding-left: 20px;
+  font-weight: bolder;
+}
+
+#inputField {
+ margin-top: 10px;
+ color: #666666;
+
+}
+ input {
+  height: 28px;
+  width: 80px;
+  font-size: 20px;
+  font-weight: lighter;
+  color: #666666;
+  text-align: center;
+
+}
+
 .container {
 text-align: center;
 font-size: 0px;
+display: none;
 }
 .timer-box {
   height: 204px;
@@ -82,25 +110,21 @@ bottom: 0px;
 left: 0px;
 right: 0px;
 position: absolute;
-
+text-align: right;
 }
-#new {
+#new, #manage, #save, #back {
   width: 68px;
   height: 48px;
-  right: 68px;
-  position: absolute;
   text-align:center;
+  display: inline-block;
 }
-#img-new, #img-manage {
+#back {
+  float: left;
+}
+#img-new, #img-manage, #img-save, #img-back {
  margin-top: 14px;
 }
-#manage {
-  width: 68px;
-  height: 48px;
-  position: absolute;
-  right: 0px;
-  text-align:center;
+#back:hover, #new:hover, #manage:hover {
+  background-color: #c6c6c6;
 }
-footer>div:hover {
- background-color: #c6c6c6;
-}
+
