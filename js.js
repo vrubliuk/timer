@@ -5,6 +5,8 @@ document.getElementById("new").onclick = function () {
   ShowBackButton();
   ShowNewTimerNote();
   ShowInputField();
+  HideManageButton();
+  HideContainer();
 };
 
 
@@ -23,16 +25,36 @@ function HideSaveButton() {
 function ShowSaveButton() {
   document.getElementById("save").removeAttribute("style");
 }
+function HideManageButton() {
+  document.getElementById("manage").style.display = "none";
+}
+function ShowManageButton() {
+  document.getElementById("manage").removeAttribute("style");
+}
 function ShowBackButton() {
   document.getElementById("back").removeAttribute("style");
+}
+function HideBackButton() {
+  document.getElementById("back").style.display = "none";
 }
 function ShowNewTimerNote() {
   document.getElementById("newTimer").removeAttribute("style");
 }
+function HideNewTimerNote() {
+  document.getElementById("newTimer").style.display = "none";
+}
 function ShowInputField() {
   document.getElementById("inputField").removeAttribute("style");
 }
-
+function HideInputField() {
+  document.getElementById("inputField").style.display = "none";
+}
+function ShowContainer() {
+  document.getElementById("container").removeAttribute("style");
+}
+function HideContainer() {
+  document.getElementById("container").style.display = "none";
+}
 
 
 //INPUT VALIDATION. ONLY DIGITS ARE ALLOWED TO BE ENTERED
@@ -43,39 +65,39 @@ $('input').keypress(function (e) {
 });
 
 
-document.getElementById("hoursInput").onfocus=function(){
+document.getElementById("hoursInput").onfocus = function () {
   var minutes = document.getElementById("hoursInput").value;
   if (parseInt(minutes) === 0) {
     document.getElementById("hoursInput").value = "";
   }
 };
-document.getElementById("hoursInput").onblur=function(){
+document.getElementById("hoursInput").onblur = function () {
   var minutes = document.getElementById("hoursInput").value;
-  if (minutes.length === 0 ) {
+  if (minutes.length === 0) {
     document.getElementById("hoursInput").value = "0";
   }
 };
-document.getElementById("minutesInput").onfocus=function(){
+document.getElementById("minutesInput").onfocus = function () {
   var minutes = document.getElementById("minutesInput").value;
   if (parseInt(minutes) === 0) {
     document.getElementById("minutesInput").value = "";
   }
 };
-document.getElementById("minutesInput").onblur=function(){
+document.getElementById("minutesInput").onblur = function () {
   var minutes = document.getElementById("minutesInput").value;
-  if (minutes.length === 0 ) {
+  if (minutes.length === 0) {
     document.getElementById("minutesInput").value = "0";
   }
 };
-document.getElementById("secondsInput").onfocus=function(){
+document.getElementById("secondsInput").onfocus = function () {
   var minutes = document.getElementById("secondsInput").value;
   if (parseInt(minutes) === 0) {
     document.getElementById("secondsInput").value = "";
   }
 };
-document.getElementById("secondsInput").onblur=function(){
+document.getElementById("secondsInput").onblur = function () {
   var minutes = document.getElementById("secondsInput").value;
-  if (minutes.length === 0 ) {
+  if (minutes.length === 0) {
     document.getElementById("secondsInput").value = "0";
   }
 };
@@ -97,30 +119,30 @@ document.getElementById("secondsInput").onkeypress = function () {
 };
 
 
-//MAKE SAVE BUTTON ACTIVE ONLY IF TIME IS ENTERED AND MORE THAN ZERO
-function checkHours () {
+//MAKE SAVE BUTTON ACTIVE ONLY IF TIME IS ENTERED AND MORE THAN ZERO 
+function checkHours() {
   var hours = document.getElementById("hoursInput").value;
-  if (parseInt(hours) > 0 ) {
+  if (parseInt(hours) > 0) {
     return true;
-  } else if ( parseInt(hours) === 0 || hours.length === 0 ) {
+  } else if (parseInt(hours) === 0 || hours.length === 0) {
     return false;
   }
 }
-function checkMinutes () {
+function checkMinutes() {
   var minutes = document.getElementById("minutesInput").value;
-  if (parseInt(minutes) > 0 ) {
-     return true;
-  } else if ( parseInt(minutes) === 0 || minutes.length === 0 ) {
-     return false;
-  } 
+  if (parseInt(minutes) > 0) {
+    return true;
+  } else if (parseInt(minutes) === 0 || minutes.length === 0) {
+    return false;
+  }
 }
-function checkSeconds () {
+function checkSeconds() {
   var seconds = document.getElementById("secondsInput").value;
-  if (parseInt(seconds) > 0 ) {
-     return true;
-  } else if ( parseInt(seconds) === 0 || seconds.length === 0 ) {
-     return false;
-  } 
+  if (parseInt(seconds) > 0) {
+    return true;
+  } else if (parseInt(seconds) === 0 || seconds.length === 0) {
+    return false;
+  }
 }
 document.getElementById("hoursInput").onkeyup = checkEntered;
 document.getElementById("minutesInput").onkeyup = checkEntered;
@@ -131,10 +153,44 @@ function checkEntered() {
   var z = checkSeconds();
   if (x || y || z) {
     document.getElementById("img-save").setAttribute("src", "images/save-active.png");
-  } else if ( !x && !y && !z ) {
+  } else if (!x && !y && !z) {
     document.getElementById("img-save").setAttribute("src", "images/save-notactive.png");
   }
 }
+
+
+document.getElementById("save").onmouseover = function () {
+  var x = document.getElementById("img-save").getAttribute("src");
+  if (x == "images/save-active.png") {
+    document.getElementById("save").style.backgroundColor = "#c6c6c6";
+  }
+};
+document.getElementById("save").onmouseout = function () {
+  document.getElementById("save").style.backgroundColor = "#dcdcdc";
+};
+
+
+//WHEN CLICK SAVE BUTTON
+document.getElementById("save").onclick = function () {
+  var x = document.getElementById("img-save").getAttribute("src");
+  if (x == "images/save-active.png") {
+    HideNewTimerNote();
+    HideInputField();
+    HideSaveButton();
+    ShowNewButton();
+    ShowManageButton();
+    HideBackButton(); 
+    ShowContainer();
+  }
+
+  document.getElementById("hoursInput").value = "0";
+  document.getElementById("minutesInput").value = "0";
+  document.getElementById("secondsInput").value = "0";
+  document.getElementById("img-save").setAttribute("src", "images/save-notactive.png");
+
+
+};
+
 
 
 

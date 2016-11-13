@@ -32,10 +32,9 @@ padding-left: 20px;
 
 }
 
-.container {
+#container {
 text-align: center;
 font-size: 0px;
-display: none;
 }
 .timer-box {
   height: 204px;
