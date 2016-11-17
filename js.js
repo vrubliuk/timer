@@ -37,6 +37,14 @@ function ShowBackButton() {
 function HideBackButton() {
   document.getElementById("back").style.display = "none";
 }
+function ShowDoneButton() {
+  document.getElementById("done").removeAttribute("style");
+}
+function HideDoneButton() {
+  document.getElementById("done").style.display = "none";
+}
+
+
 function ShowNewTimerNote() {
   document.getElementById("newTimer").removeAttribute("style");
 }
@@ -191,9 +199,34 @@ document.getElementById("save").onclick = function () {
 
 };
 
+//WHEN CLICK BACK BUTTON
+document.getElementById("back").onclick = function () {
+  var x = document.getElementById("back").getAttribute("display");
+  if (x !== "none") {
+    HideNewTimerNote();
+    HideInputField();
+    HideSaveButton();
+    ShowNewButton();
+    ShowManageButton();
+    HideBackButton(); 
+    ShowContainer();
+  }
+  document.getElementById("hoursInput").value = "0";
+  document.getElementById("minutesInput").value = "0";
+  document.getElementById("secondsInput").value = "0";
+  document.getElementById("img-save").setAttribute("src", "images/save-notactive.png");
+};
 
+//WHEN CLICK MANAGE BUTTON
+document.getElementById("manage").onclick = function () {
+  ShowDoneButton();
+  HideNewButton();
+  HideManageButton();
 
-
+  // document.getElementById("edit").setAttribute("visibility", "hidden");
+  // document.getElementsByClassName("edit").setAttribute("visibility", "hidden");
+document.getElementById("edit").style.visibility = "hidden";
+};
 
 
 
