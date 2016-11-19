@@ -10,9 +10,12 @@ header {
   font-size: 24px;
   font-weight: lighter;
   padding-left: 20px;
-
 }
 #newTimer {
+padding-left: 20px;
+  font-weight: bolder;
+}
+#editTimer {
 padding-left: 20px;
   font-weight: bolder;
 }
@@ -20,7 +23,6 @@ padding-left: 20px;
 #inputField {
  margin-top: 10px;
  color: #666666;
-
 }
  input {
   height: 28px;
@@ -29,9 +31,7 @@ padding-left: 20px;
   font-weight: lighter;
   color: #666666;
   text-align: center;
-
 }
-
 #container {
 text-align: center;
 font-size: 0px;
@@ -39,7 +39,7 @@ font-size: 0px;
 .timer-box {
   height: 204px;
   width: 344px;
-  border: 2px solid black;
+  border: 2px solid #f2f2f2;
   display: inline-block;
   margin: 5px;
 }
@@ -62,21 +62,18 @@ font-size: 0px;
   margin-top: 12px;
   display: inline-block;
 }
-
 #start-stop {
   height: 60px;
   width: 60px;
   margin-left: 42px;
   margin-top: 4px;
   border-radius: 50%;
-  box-sizing: context-box;
   border: 2px solid #c5c5c5;
   display: inline-block;
 }
 #start-stop:hover {
   background-color:#dadada;
 }
-
 #edit {
   height: 48px;
   width: 48px;
@@ -84,21 +81,41 @@ font-size: 0px;
   margin-top: 12px;
   display: inline-block;
 }
-
 #img-refresh, #img-edit {
   margin-top: 14px; 
-
 }
-
 #img-start, #img-stop {
   margin-top: 20px; 
 }
-
-
-
 #refresh:hover, #edit:hover {
   background-color:#dadada;
 }
+
+.timeFullBar {
+  margin-left: 50px;
+  margin-top: 15px;
+  width: 240px;
+  height: 30px;
+  border: 2px solid #c5c5c5;
+}
+
+#timeLeftBar {
+background-color:#c5c5c5;
+width: 100%;
+height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*FOOTER*/
@@ -111,7 +128,7 @@ right: 0px;
 position: absolute;
 text-align: right;
 }
-#new, #manage, #save, #back, #done {
+#new, #manage, #save, #back, #done, #delete {
   width: 68px;
   height: 48px;
   text-align:center;
@@ -120,10 +137,10 @@ text-align: right;
 #back {
   float: left;
 }
-#img-new, #img-manage, #img-save, #img-back, #img-done {
+#img-new, #img-manage, #img-save, #img-back, #img-done, #img-delete {
  margin-top: 14px;
 }
-#back:hover, #new:hover, #manage:hover, #done:hover {
+#back:hover, #new:hover, #manage:hover, #done:hover, #delete:hover {
   background-color: #c6c6c6;
 }
 

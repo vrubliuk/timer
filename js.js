@@ -1,14 +1,3 @@
-document.getElementById("new").onclick = function () {
-  HideNoTimerNote();
-  HideNewButton();
-  ShowSaveButton();
-  ShowBackButton();
-  ShowNewTimerNote();
-  ShowInputField();
-  HideManageButton();
-  HideContainer();
-};
-
 
 function HideNoTimerNote() {
   document.getElementById("noTimer").style.display = "none";
@@ -43,7 +32,12 @@ function ShowDoneButton() {
 function HideDoneButton() {
   document.getElementById("done").style.display = "none";
 }
-
+function ShowDeleteButton() {
+  document.getElementById("delete").removeAttribute("style");
+}
+function HideDeleteButton() {
+  document.getElementById("delete").style.display = "none";
+}
 
 function ShowNewTimerNote() {
   document.getElementById("newTimer").removeAttribute("style");
@@ -51,6 +45,13 @@ function ShowNewTimerNote() {
 function HideNewTimerNote() {
   document.getElementById("newTimer").style.display = "none";
 }
+function ShowEditTimerNote() {
+  document.getElementById("editTimer").removeAttribute("style");
+}
+function HideEditTimerNote() {
+  document.getElementById("editTimer").style.display = "none";
+}
+
 function ShowInputField() {
   document.getElementById("inputField").removeAttribute("style");
 }
@@ -178,6 +179,38 @@ document.getElementById("save").onmouseout = function () {
 };
 
 
+document.getElementById("start-stop").onmouseout = function () {
+  document.getElementById("start-stop").style.backgroundColor = "inherit";
+};
+
+
+function TurnOffHoverForStartStop() {
+  document.getElementById("start-stop").onmouseover = function () {
+    document.getElementById("start-stop").style.backgroundColor = "inherit";
+  };
+}
+
+function TurnOnHoverForStartStop() {
+  document.getElementById("start-stop").onmouseover = function () {
+    document.getElementById("start-stop").style.backgroundColor = "#dadada";
+  };
+}
+
+//WHEN CLICK NEW BUTTON
+document.getElementById("new").onclick = function () {
+  HideNoTimerNote();
+  HideNewButton();
+  ShowSaveButton();
+  ShowBackButton();
+  ShowNewTimerNote();
+  ShowInputField();
+  HideManageButton();
+  HideContainer();
+  HideEditTimerNote();
+};
+
+
+
 //WHEN CLICK SAVE BUTTON
 document.getElementById("save").onclick = function () {
   var x = document.getElementById("img-save").getAttribute("src");
@@ -189,6 +222,9 @@ document.getElementById("save").onclick = function () {
     ShowManageButton();
     HideBackButton(); 
     ShowContainer();
+    TurnOnHoverForStartStop();
+    HideDeleteButton();
+    HideEditTimerNote();
   }
 
   document.getElementById("hoursInput").value = "0";
@@ -210,6 +246,9 @@ document.getElementById("back").onclick = function () {
     ShowManageButton();
     HideBackButton(); 
     ShowContainer();
+    TurnOnHoverForStartStop();
+    HideEditTimerNote();
+    HideDeleteButton();
   }
   document.getElementById("hoursInput").value = "0";
   document.getElementById("minutesInput").value = "0";
@@ -222,19 +261,72 @@ document.getElementById("manage").onclick = function () {
   ShowDoneButton();
   HideNewButton();
   HideManageButton();
+  TurnOffHoverForStartStop();
 
-  // document.getElementById("edit").setAttribute("visibility", "hidden");
-  // document.getElementsByClassName("edit").setAttribute("visibility", "hidden");
+document.getElementById("refresh").style.visibility = "visible";
+document.getElementById("img-start").setAttribute("src", "images/start-notactive.png");
 document.getElementById("edit").style.visibility = "hidden";
+document.getElementById("img-refresh").setAttribute("src", "images/delete.png");
+
+};
+
+//WHEN CLICK DONE BUTTON
+document.getElementById("done").onclick = function () {
+    HideNewTimerNote();
+    HideInputField();
+    HideSaveButton();
+    ShowNewButton();
+    ShowManageButton();
+    HideBackButton(); 
+    ShowContainer();
+    HideDoneButton();
+    TurnOnHoverForStartStop();
+
+document.getElementById("img-start").setAttribute("src", "images/start.png");
+document.getElementById("edit").style.visibility = "visible";
+document.getElementById("img-refresh").setAttribute("src", "images/refresh.png");
+
 };
 
 
 
+document.getElementById("start-stop").onclick = function () {
+  var x = document.getElementById("img-start").getAttribute("src");
+  if (x == "images/start.png") {
+      StartTimer(20);
+      document.getElementById("img-start").setAttribute("src", "images/stop.png");
+  }
+};
 
 
+function StartTimer(time) {
+  var width = 100;
+  var element = document.getElementById("timeLeftBar");
+  var x = setInterval (changeWidth, 1000);
+  function changeWidth() {
+    if (width <= 0) {
+      clearInterval(x);
+      document.getElementById("img-start").setAttribute("src", "images/start.png");
+    } else {
+      width = width - (100/time);
+      element.style.width = width + '%';
+    }
+
+    }
+
+}
 
 
-
-
+//WHEN CLICK EDIT BUTTON
+document.getElementById("edit").onclick = function () {
+  ShowEditTimerNote();
+  ShowInputField();
+  HideContainer();
+  ShowBackButton(); 
+  HideManageButton();
+  HideNewButton();
+  ShowSaveButton();
+  ShowDeleteButton();
+};
 
 
