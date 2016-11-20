@@ -1,9 +1,4 @@
-$(function(){
-  var $ppc = $('.progress-pie-chart'),
-    percent = parseInt($ppc.data('percent')),
-    deg = 360*percent/100;
-  if (percent > 50) {
-    $ppc.addClass('gt-50');
-  }
-  $('.ppc-progress-fill').css('transform','rotate('+ deg +'deg)');
-});
+function myHover(element) {
+  document.getElementById(element).style.opacity = "0.5";
+}
+
