@@ -10,6 +10,13 @@ function ShowInputField() {
 function HideInputField() {
   document.getElementById("inputField").style.display = "none";
 }
+function ShowProgressBar() {
+  document.getElementById("timeFullBar").removeAttribute("style");
+}
+function HideProgressBar() {
+  document.getElementById("timeFullBar").style.display = "none";
+}
+
 
 
 function Hover(element) {
@@ -68,6 +75,7 @@ document.getElementById("start-stop").onclick = function () {
   if (x == "images/start.png" && y) {
     StartTimer(20);
     document.getElementById("img-start").setAttribute("src", "images/stop.png");
+    document.getElementById("edit").style.opacity = "0.2";
   }
 };
 
@@ -80,6 +88,7 @@ function StartTimer(time) {
     if (width <= 0) {
       clearInterval(x);
       document.getElementById("img-start").setAttribute("src", "images/start.png");
+      document.getElementById("edit").style.opacity = "1";
       element.style.width = '100%';
     } else {
       width = width - (100 / time / 100);
@@ -113,25 +122,74 @@ function ElementIsActive(element) {
 //WHEN CLICK EDIT/DONE BUTTON
 document.getElementById("edit").onclick = function () {
    var x = document.getElementById("img-edit").getAttribute("src");
-   var active = ElementIsActive("img-edit");
+   var active = ElementIsActive("edit");
   if (x == "images/edit.png" && active ) {  
     HideTimer();
     ShowInputField();
-    
-    // noHover("start-stop");
-     document.getElementById("start-stop").style.opacity = "0.2";
-    // document.getElementById("start-stop").style.border = "2px solid rgba(255,255,255,0.1)";
+    HideProgressBar();
+    document.getElementById("start-stop").style.opacity = "0.2";
     document.getElementById("img-refresh").setAttribute("src", "images/back.png");
     document.getElementById("img-edit").setAttribute("src", "images/done.png");
     document.getElementById("edit").style.opacity = "0.2";
+  
     
   } else if (x == "images/done.png" && active ) {
+      HideInputField();
+      ShowTimer();
+      ShowProgressBar();
+      document.getElementById("img-refresh").setAttribute("src", "images/refresh.png");
+    document.getElementById("img-edit").setAttribute("src", "images/edit.png");
+    document.getElementById("start-stop").style.opacity = "1";
 
+      var hours = document.getElementById("hoursInput").value;
+      var minutes = document.getElementById("minutesInput").value;
+      var seconds = document.getElementById("secondsInput").value;
+      var corectedHours = CorrectInputValue(hours);
+      var corectedMinutes = CorrectInputValue(minutes);
+      var corectedSeconds = CorrectInputValue(seconds);
+
+      document.getElementById("hours").innerHTML = corectedHours;
+      document.getElementById("minutes").innerHTML = corectedMinutes;
+      document.getElementById("seconds").innerHTML = corectedSeconds;
+      document.getElementById("hoursInput").value = "0";
+    document.getElementById("minutesInput").value = "0";
+    document.getElementById("secondsInput").value = "0";
 
   }
 
+function CorrectInputValue (value) { 
+  var x = value.length;
+  if (x == 1) {
+    value = "0" + value;
+    return value;
+  } else {
+    return value;
+  }
+ }
+
 
 };
+//WHEN CLICK REFRESH/BACK BUTTON
+document.getElementById("refresh").onclick = function () {
+  var x = document.getElementById("img-refresh").getAttribute("src");
+  if ( x == "images/back.png" ) {
+    HideInputField();
+    ShowTimer();
+    ShowProgressBar();
+    document.getElementById("img-refresh").setAttribute("src", "images/refresh.png");
+    document.getElementById("img-edit").setAttribute("src", "images/edit.png");
+    document.getElementById("start-stop").style.opacity = "1";
+    document.getElementById("edit").style.opacity = "1";
+    document.getElementById("hoursInput").value = "0";
+    document.getElementById("minutesInput").value = "0";
+    document.getElementById("secondsInput").value = "0";
+
+  }
+
+};
+
+
+
 
 
 
@@ -142,7 +200,7 @@ window.onload = function () {
 
 //INPUT VALIDATION. ONLY DIGITS ARE ALLOWED TO BE ENTERED
 $('input').keypress(function (e) {
-  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+  if (e.which != 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
     return false;
   }
 });

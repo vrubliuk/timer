@@ -33,7 +33,7 @@ main {
  margin: 0px;
  padding: 0px;
  color: #ffffff;
- border: solid black 1px;
+ /*border: solid black 1px;*/
  text-align: center;
  
 }
@@ -45,7 +45,7 @@ display: inline-block;
 }
 
 #hoursInput, #minutesInput, #secondsInput {
-  border: solid black 1px;
+  border: solid rgba(255,255,255,0.1) 1px;
   display: inline-block;
    height:20vmin;
   width: 20vmin;
@@ -55,6 +55,11 @@ display: inline-block;
   text-align: center;
   background-color: #038387;
 }
+#inputFieldTitle {
+  font-size: 7vmin;
+
+}
+
 #hoursTitle, #minutesTitle, #secondsTitle {
   font-size: 5vmin;
 }
@@ -95,10 +100,6 @@ text-align: center;
   margin-top: 12px;
   display: inline-block;
 }
-/*#refresh:hover {
-  opacity: 0.1;
-
-}*/
 #start-stop {
   height: 60px;
   width: 60px;
