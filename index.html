@@ -1,41 +1,72 @@
 <!DOCTYPE html>
+
 <head>
-	<title>Timer</title>
-	<link rel="icon" href="images/website-icon.png">
-	<link href="style.css" rel="stylesheet">
+  <title>Timer</title>
+  <link rel="icon" href="images/website-icon.png">
+  <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
 
+  <main>
 
-	<div id="timer">
-        <span id="hours">00</span>
-        <span>:</span>
-        <span id="minutes">25</span>
-        <span>:</span>
-        <span id="seconds">00</span>
+    <div id="timer" style="display:none">
+      <span id="hours">00</span>
+      <span>:</span>
+      <span id="minutes">25</span>
+      <span>:</span>
+      <span id="seconds">00</span>
+    </div>
+
+    <div id="inputField" style="display:none">
+      <div class="inputBox" >
+        <input id="hoursInput"  type="text" maxlength="2" value="0">
+          <br>
+          <span id="hoursTitle" > hours</span>
+  
       </div>
+      <div class="inputBox" >
+        <input id="minutesInput"  type="text" maxlength="2" value="0">
+        <br>
+        <span id="minutesTitle"  > minutes</span>
+      </div>
+      <div class="inputBox" >
+        <input id="secondsInput"  type="text" maxlength="2" value="0">
+        <br>
+        <span id="secondsTitle"  > seconds</span>
+      </div>
+    </div>
+
+  </main>
 
 
 
 
 
 
-	<footer>
-		<div id="buttons">
-			<div id="refresh" >
+  <footer id="footer">
+    <div id="buttons">
+      <div id="refresh">
         <img id="img-refresh" src="images/refresh.png">
       </div>
       <div id="start-stop">
         <img id="img-start" src="images/start.png">
       </div>
       <div id="edit">
-					<img id="img-edit" src="images/edit.png">
-			</div>
-		</div>
-	</footer>
+        <img id="img-edit" src="images/edit.png" >
+      </div>
 
-	
-	<script src="js.js"></script>
+
+    </div>
+
+    <div id="timeFullBar">
+      <div id="timeLeftBar"></div>
+    </div>
+
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="js.js"></script>
 </body>
 
 </html>
