@@ -16,58 +16,36 @@ function ShowProgressBar() {
 function HideProgressBar() {
   document.getElementById("timeFullBar").style.display = "none";
 }
-
+window.onload = function () {
+  InsertInitialColor();
+  ShowTimer();
+};
 
 
 function Hover(element) {
- 
- 
   document.getElementById(element).onmouseover = function () {
-
     var x = ElementIsActive(element);
-    if (x) { document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0.1)";}
+    if (x) {
+      document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0.1)";
+    } else {
+      document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0)";
+    }
+  };
 
+  document.getElementById(element).onmouseout = function () {
+    var x = ElementIsActive(element);
+    if (x) {
+      document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0)";
+    }
     else {
-
-      document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0)";
-    }
-   
-    // var x = $(this).children('img').attr('src'),
-    //     y = "not";
-    // var y = x.includes("not");
-    // alert(y);
-    
-  // document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0.1)";
-};
-
-document.getElementById(element).onmouseout = function () {
-  var x = ElementIsActive(element);
-if (x) { document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0)"; }
-
-else {
-
       document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0)";
     }
 
-};
+  };
 }
 Hover("refresh");
 Hover("start-stop");
 Hover("edit");
-
-// function noHover(element) {
-//   document.getElementById(element).onmouseover = function () {
-//      document.getElementById(this).style.backgroundColor = "rgb(255,255,255)";
-//     };
-// document.getElementById(element).onmouseout = function () {
-//   document.getElementById(element).removeAttribute("style");
-// };
-// }
-
-
-
-
-
 
 document.getElementById("start-stop").onclick = function () {
   var x = document.getElementById("img-start").getAttribute("src");
@@ -98,14 +76,16 @@ function StartTimer(time) {
 }
 
 
-//HIDE FOOTER IF WINDOW IS SMALL
+//HIDE HEADER AND FOOTER IF WINDOW IS SMALL
 window.addEventListener("resize", function () {
   var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
- 
-  if ( h <= 350 ) {
+
+  if (h <= 400) {
     document.getElementById("footer").style.display = "none";
+    document.getElementById("header").style.display = "none";
   } else {
     document.getElementById("footer").removeAttribute("style");
+    document.getElementById("header").removeAttribute("style");
   }
 
 });
@@ -115,15 +95,15 @@ function ElementIsActive(element) {
   var x = document.getElementById(element);
   var style = window.getComputedStyle(x);
   var op = style.getPropertyValue('opacity');
-  if ( op == 1 ) {
+  if (op == 1) {
     return true;
   }
 }
 //WHEN CLICK EDIT/DONE BUTTON
 document.getElementById("edit").onclick = function () {
-   var x = document.getElementById("img-edit").getAttribute("src");
-   var active = ElementIsActive("edit");
-  if (x == "images/edit.png" && active ) {  
+  var x = document.getElementById("img-edit").getAttribute("src");
+  var active = ElementIsActive("edit");
+  if (x == "images/edit.png" && active) {
     HideTimer();
     ShowInputField();
     HideProgressBar();
@@ -131,48 +111,48 @@ document.getElementById("edit").onclick = function () {
     document.getElementById("img-refresh").setAttribute("src", "images/back.png");
     document.getElementById("img-edit").setAttribute("src", "images/done.png");
     document.getElementById("edit").style.opacity = "0.2";
-  
-    
-  } else if (x == "images/done.png" && active ) {
-      HideInputField();
-      ShowTimer();
-      ShowProgressBar();
-      document.getElementById("img-refresh").setAttribute("src", "images/refresh.png");
+
+
+  } else if (x == "images/done.png" && active) {
+    HideInputField();
+    ShowTimer();
+    ShowProgressBar();
+    document.getElementById("img-refresh").setAttribute("src", "images/refresh.png");
     document.getElementById("img-edit").setAttribute("src", "images/edit.png");
     document.getElementById("start-stop").style.opacity = "1";
 
-      var hours = document.getElementById("hoursInput").value;
-      var minutes = document.getElementById("minutesInput").value;
-      var seconds = document.getElementById("secondsInput").value;
-      var corectedHours = CorrectInputValue(hours);
-      var corectedMinutes = CorrectInputValue(minutes);
-      var corectedSeconds = CorrectInputValue(seconds);
+    var hours = document.getElementById("hoursInput").value;
+    var minutes = document.getElementById("minutesInput").value;
+    var seconds = document.getElementById("secondsInput").value;
+    var corectedHours = CorrectInputValue(hours);
+    var corectedMinutes = CorrectInputValue(minutes);
+    var corectedSeconds = CorrectInputValue(seconds);
 
-      document.getElementById("hours").innerHTML = corectedHours;
-      document.getElementById("minutes").innerHTML = corectedMinutes;
-      document.getElementById("seconds").innerHTML = corectedSeconds;
-      document.getElementById("hoursInput").value = "0";
+    document.getElementById("hours").innerHTML = corectedHours;
+    document.getElementById("minutes").innerHTML = corectedMinutes;
+    document.getElementById("seconds").innerHTML = corectedSeconds;
+    document.getElementById("hoursInput").value = "0";
     document.getElementById("minutesInput").value = "0";
     document.getElementById("secondsInput").value = "0";
 
   }
 
-function CorrectInputValue (value) { 
-  var x = value.length;
-  if (x == 1) {
-    value = "0" + value;
-    return value;
-  } else {
-    return value;
+  function CorrectInputValue(value) {
+    var x = value.length;
+    if (x == 1) {
+      value = "0" + value;
+      return value;
+    } else {
+      return value;
+    }
   }
- }
 
 
 };
 //WHEN CLICK REFRESH/BACK BUTTON
 document.getElementById("refresh").onclick = function () {
   var x = document.getElementById("img-refresh").getAttribute("src");
-  if ( x == "images/back.png" ) {
+  if (x == "images/back.png") {
     HideInputField();
     ShowTimer();
     ShowProgressBar();
@@ -188,23 +168,12 @@ document.getElementById("refresh").onclick = function () {
 
 };
 
-
-
-
-
-
-
-window.onload = function () {
-  ShowTimer();
-};
-
 //INPUT VALIDATION. ONLY DIGITS ARE ALLOWED TO BE ENTERED
 $('input').keypress(function (e) {
   if (e.which != 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
     return false;
   }
 });
-
 
 document.getElementById("hoursInput").onfocus = function () {
   var minutes = document.getElementById("hoursInput").value;
@@ -242,8 +211,6 @@ document.getElementById("secondsInput").onblur = function () {
     document.getElementById("secondsInput").value = "0";
   }
 };
-
-
 
 //CORRECTION FOR USER'S INPUT FOR MINUTES AND SECONDS
 document.getElementById("minutesInput").onkeypress = function () {
@@ -294,10 +261,130 @@ function checkEntered() {
   var z = checkSeconds();
   if (x || y || z) {
     document.getElementById("edit").style.opacity = "1";
-   
+
   } else if (!x && !y && !z) {
     document.getElementById("edit").style.opacity = "0.3";
-    
+
   }
 }
+//INSERT BACKGROUND COLORS
+var color = "#0099bc";
+function InsertInitialColor() {
+  if (localStorage.getItem("color") !== null) {
+    color = localStorage.getItem("color");
+    if (color === "#e74856") {
+      document.getElementById("color1").style.border = "solid rgb(255,255,255) 2px";
+    } else if (color === "#69797e") {
+      document.getElementById("color2").style.border = "solid rgb(255,255,255) 2px";
+    } else if (color === "#0099bc") {
+      document.getElementById("color3").style.border = "solid rgb(255,255,255) 2px";
+    } else if (color === "#038387") {
+      document.getElementById("color4").style.border = "solid rgb(255,255,255) 2px";
+    } else if (color === "#ffb900") {
+      document.getElementById("color5").style.border = "solid rgb(255,255,255) 2px";
+    }
+  } else {
+    color = "#0099bc";
+    document.getElementById("color3").style.border = "solid rgb(255,255,255) 2px";
+  }
+  localStorage.setItem("color", color);
+  document.getElementById("body").style.backgroundColor = color;
+  document.getElementById("hoursInput").style.backgroundColor = color;
+  document.getElementById("minutesInput").style.backgroundColor = color;
+  document.getElementById("secondsInput").style.backgroundColor = color;
+}
+// InsertInitialColor();
 
+//CHANGE BACKGROUND COLORS
+document.getElementById("color1").onclick = function () {
+  color = "#e74856";
+  localStorage.setItem("color", color);
+  document.getElementById("body").style.backgroundColor = color;
+  document.getElementById("hoursInput").style.backgroundColor = color;
+  document.getElementById("minutesInput").style.backgroundColor = color;
+  document.getElementById("secondsInput").style.backgroundColor = color;
+  document.getElementById("color1").style.border = "solid rgb(255,255,255) 2px";
+  document.getElementById("color2").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color3").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color4").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color5").style.border = "solid rgba(255,255,255,0.1) 2px";
+};
+document.getElementById("color2").onclick = function () {
+  color = "#69797e";
+  localStorage.setItem("color", color);
+  document.getElementById("body").style.backgroundColor = color;
+  document.getElementById("hoursInput").style.backgroundColor = color;
+  document.getElementById("minutesInput").style.backgroundColor = color;
+  document.getElementById("secondsInput").style.backgroundColor = color;
+  document.getElementById("color1").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color2").style.border = "solid rgb(255,255,255) 2px";
+  document.getElementById("color3").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color4").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color5").style.border = "solid rgba(255,255,255,0.1) 2px";
+};
+document.getElementById("color3").onclick = function () {
+  color = "#0099bc";
+  localStorage.setItem("color", color);
+  document.getElementById("body").style.backgroundColor = color;
+  document.getElementById("hoursInput").style.backgroundColor = color;
+  document.getElementById("minutesInput").style.backgroundColor = color;
+  document.getElementById("secondsInput").style.backgroundColor = color;
+  document.getElementById("color1").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color2").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color3").style.border = "solid rgb(255,255,255) 2px";
+  document.getElementById("color4").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color5").style.border = "solid rgba(255,255,255,0.1) 2px";
+};
+document.getElementById("color4").onclick = function () {
+  color = "#038387";
+  localStorage.setItem("color", color);
+  document.getElementById("body").style.backgroundColor = color;
+  document.getElementById("hoursInput").style.backgroundColor = color;
+  document.getElementById("minutesInput").style.backgroundColor = color;
+  document.getElementById("secondsInput").style.backgroundColor = color;
+  document.getElementById("color1").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color2").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color3").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color4").style.border = "solid rgb(255,255,255) 2px";
+  document.getElementById("color5").style.border = "solid rgba(255,255,255,0.1) 2px";
+};
+document.getElementById("color5").onclick = function () {
+  color = "#ffb900";
+  localStorage.setItem("color", color);
+  document.getElementById("body").style.backgroundColor = color;
+  document.getElementById("hoursInput").style.backgroundColor = color;
+  document.getElementById("minutesInput").style.backgroundColor = color;
+  document.getElementById("secondsInput").style.backgroundColor = color;
+  document.getElementById("color1").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color2").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color3").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color4").style.border = "solid rgba(255,255,255,0.1) 2px";
+  document.getElementById("color5").style.border = "solid rgb(255,255,255) 2px";
+};
+
+//HOVER FOR COLOR BUTTONS
+function HoverForColors(element) {
+  document.getElementById(element).onmouseover = function () {
+    document.getElementById(element).style.border = "solid white 2px";
+  };
+  document.getElementById(element).onmouseout = function () {
+    var x = document.getElementById(element);
+    var styleOfElement = window.getComputedStyle(x);
+    var bgcElement = styleOfElement.getPropertyValue('background-color');
+    var y = document.getElementById("body");
+    var styleOfBody = window.getComputedStyle(y);
+    var bgcBody = styleOfBody.getPropertyValue('background-color');
+    if (bgcElement == bgcBody) {
+      document.getElementById(element).style.border = "solid white 2px";
+    } else {
+      document.getElementById(element).style.border = "solid rgba(255,255,255,0.1) 2px";
+    }
+  };
+}
+HoverForColors("color1");
+HoverForColors("color2");
+HoverForColors("color3");
+HoverForColors("color4");
+HoverForColors("color5");
+
+ 

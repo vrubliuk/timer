@@ -3,10 +3,15 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #038387;
+  /*background-color: #038387;*/
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
 }
+
+/*#color1:hover, #color2:hover, #color3:hover, #color4:hover, #color5:hover {
+  border: solid white 2px;
+} */
+
 main {
   width: 100%;
   height: 100%;
@@ -45,7 +50,7 @@ display: inline-block;
 }
 
 #hoursInput, #minutesInput, #secondsInput {
-  border: solid rgba(255,255,255,0.1) 1px;
+  border: solid rgba(255,255,255,0.1) 2px;
   display: inline-block;
    height:20vmin;
   width: 20vmin;
@@ -53,7 +58,8 @@ display: inline-block;
   font-weight: lighter;
   color: #ffffff;
   text-align: center;
-  background-color: #038387;
+  /*background-color: #038387;*/
+
 }
 #inputFieldTitle {
   font-size: 7vmin;
@@ -75,6 +81,62 @@ display: inline-block;
   text-align: center;
 }*/
 
+header {
+  top: 0px;
+  width: 100%;
+  min-width: 320px;
+  position: absolute;
+  text-align: center;
+  /*border: solid black 1px;*/
+  /*padding-top: 20px;*/
+  z-index: 1;
+}
+#color1 {
+  background-color: #e74856;
+  height: 48px;
+  width: 48px;
+  display: inline-block;
+  border-radius: 50%;
+  border: solid rgba(255,255,255,0.1) 2px;
+  margin: 10px;
+
+}
+#color2 {
+  background-color: #69797e;
+  height: 48px;
+  width: 48px;
+  display: inline-block;
+  border-radius: 50%;
+  border: solid rgba(255,255,255,0.1) 2px;
+    margin: 10px;
+}
+#color3 {
+  background-color: #0099bc;
+  height: 48px;
+  width: 48px;
+  display: inline-block;
+  border-radius: 50%;
+  border: solid rgba(255,255,255,0.1) 2px;
+  margin: 10px;
+}
+#color4 {
+   background-color: #038387;
+  height: 48px;
+  width: 48px;
+  display: inline-block;
+border-radius: 50%;
+border: solid rgba(255,255,255,0.1) 2px;
+  margin: 10px;
+}
+#color5 {
+  background-color: #ffb900;
+  height: 48px;
+  width: 48px;
+  display: inline-block;
+border-radius: 50%;
+border: solid rgba(255,255,255,0.1) 2px;
+  margin: 10px;
+}
 
 
 
@@ -82,7 +144,7 @@ footer {
   height: 125px;
   width: 100%;
   /*background-color: #dcdcdc;*/
-  background-color: #038387;
+  /*background-color: #038387;*/
   bottom: 0px;
   min-width: 320px;
   
@@ -90,9 +152,9 @@ footer {
 position: absolute;
 text-align: center;
 }
-#buttons {
+/*#buttons {
   display: inline-block;
-}
+}*/
 
 #refresh {
   height: 48px;
