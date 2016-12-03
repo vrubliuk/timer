@@ -19,6 +19,8 @@ function HideProgressBar() {
 window.onload = function () {
   InsertInitialColor();
   ShowTimer();
+  InsertNumbers();
+  document.getElementById("refresh").style.opacity = "0.2";
 };
 
 
@@ -46,35 +48,6 @@ function Hover(element) {
 Hover("refresh");
 Hover("start-stop");
 Hover("edit");
-
-document.getElementById("start-stop").onclick = function () {
-  var x = document.getElementById("img-start").getAttribute("src");
-  var y = ElementIsActive("start-stop");
-  if (x == "images/start.png" && y) {
-    StartTimer(20);
-    document.getElementById("img-start").setAttribute("src", "images/stop.png");
-    document.getElementById("edit").style.opacity = "0.2";
-  }
-};
-
-
-function StartTimer(time) {
-  var width = 100;
-  var element = document.getElementById("timeLeftBar");
-  var x = setInterval(changeWidth, 10);
-  function changeWidth() {
-    if (width <= 0) {
-      clearInterval(x);
-      document.getElementById("img-start").setAttribute("src", "images/start.png");
-      document.getElementById("edit").style.opacity = "1";
-      element.style.width = '100%';
-    } else {
-      width = width - (100 / time / 100);
-      element.style.width = width + '%';
-    }
-  }
-}
-
 
 //HIDE HEADER AND FOOTER IF WINDOW IS SMALL
 window.addEventListener("resize", function () {
@@ -111,6 +84,7 @@ document.getElementById("edit").onclick = function () {
     document.getElementById("img-refresh").setAttribute("src", "images/back.png");
     document.getElementById("img-edit").setAttribute("src", "images/done.png");
     document.getElementById("edit").style.opacity = "0.2";
+    document.getElementById("refresh").style.opacity = "1";
 
 
   } else if (x == "images/done.png" && active) {
@@ -120,6 +94,7 @@ document.getElementById("edit").onclick = function () {
     document.getElementById("img-refresh").setAttribute("src", "images/refresh.png");
     document.getElementById("img-edit").setAttribute("src", "images/edit.png");
     document.getElementById("start-stop").style.opacity = "1";
+    document.getElementById("refresh").style.opacity = "0.2";
 
     var hours = document.getElementById("hoursInput").value;
     var minutes = document.getElementById("minutesInput").value;
@@ -131,11 +106,17 @@ document.getElementById("edit").onclick = function () {
     document.getElementById("hours").innerHTML = corectedHours;
     document.getElementById("minutes").innerHTML = corectedMinutes;
     document.getElementById("seconds").innerHTML = corectedSeconds;
+    localStorage.setItem("h", corectedHours);
+    localStorage.setItem("m", corectedMinutes);
+    localStorage.setItem("s", corectedSeconds);
+
     document.getElementById("hoursInput").value = "0";
     document.getElementById("minutesInput").value = "0";
     document.getElementById("secondsInput").value = "0";
 
   }
+
+
 
   function CorrectInputValue(value) {
     var x = value.length;
@@ -152,7 +133,8 @@ document.getElementById("edit").onclick = function () {
 //WHEN CLICK REFRESH/BACK BUTTON
 document.getElementById("refresh").onclick = function () {
   var x = document.getElementById("img-refresh").getAttribute("src");
-  if (x == "images/back.png") {
+  var active = ElementIsActive("refresh");
+  if (x == "images/back.png" && active) {
     HideInputField();
     ShowTimer();
     ShowProgressBar();
@@ -160,9 +142,13 @@ document.getElementById("refresh").onclick = function () {
     document.getElementById("img-edit").setAttribute("src", "images/edit.png");
     document.getElementById("start-stop").style.opacity = "1";
     document.getElementById("edit").style.opacity = "1";
+    document.getElementById("refresh").style.opacity = "0.2";
     document.getElementById("hoursInput").value = "0";
     document.getElementById("minutesInput").value = "0";
     document.getElementById("secondsInput").value = "0";
+
+  } else if (x == "images/refresh.png" && active) {
+    //add LOGIC for timer
 
   }
 
@@ -387,4 +373,139 @@ HoverForColors("color3");
 HoverForColors("color4");
 HoverForColors("color5");
 
- 
+
+//TIMER LOGIC
+var h;
+var m;
+var s;
+
+function InsertNumbers() {
+  function InsertHours() {
+    if (localStorage.getItem("h") !== null) {
+      h = localStorage.getItem('h');
+    } else {
+      h = '00';
+    }
+    localStorage.setItem("h", h);
+    document.getElementById("hours").innerHTML = h;
+  }
+  function InsertMinutes() {
+    if (localStorage.getItem("m") !== null) {
+      m = localStorage.getItem('m');
+    } else {
+      m = '25';
+    }
+    localStorage.setItem("m", m);
+    document.getElementById("minutes").innerHTML = m;
+  }
+  function InsertSeconds() {
+    if (localStorage.getItem("s") !== null) {
+      s = localStorage.getItem('s');
+    } else {
+      s = '00';
+    }
+    localStorage.setItem("s", s);
+    document.getElementById("seconds").innerHTML = s;
+
+  }
+  InsertHours();
+  InsertMinutes();
+  InsertSeconds();
+}
+
+
+
+
+
+//WHEN CLICK START-STOP BUTTON
+document.getElementById("start-stop").onclick = function () {
+  var x = document.getElementById("img-start").getAttribute("src");
+  var active = ElementIsActive("start-stop");
+  if (x == "images/start.png" && active) {
+    document.getElementById("img-start").setAttribute("src", "images/stop.png");
+    document.getElementById("edit").style.opacity = "0.2";
+    document.getElementById("refresh").style.opacity = "1";
+    TimerWork();
+    // StartTimer(5);
+  } else if (x == "images/stop.png" && active) {
+    document.getElementById("img-start").setAttribute("src", "images/start.png");
+    document.getElementById("edit").style.opacity = "1";
+
+    TimerPause();
+
+  }
+};
+
+
+var pause = false;
+var refresh = false;
+
+
+function countPeriodInSeconds(hours, minutes, seconds) {
+  var PeriodInSeconds = hours * 3600 + minutes * 60 + seconds;
+  return PeriodInSeconds;
+}
+
+function TimerWork() {
+  var hours = parseInt(document.getElementById("hours").innerHTML);
+  var minutes = parseInt(document.getElementById("minutes").innerHTML);
+  var seconds = parseInt(document.getElementById("seconds").innerHTML);
+  var periodInSeconds = countPeriodInSeconds(hours, minutes, seconds);
+  var timeEnd = Date.now() + periodInSeconds * 1000;
+  var x = window.setInterval(function () {
+    var timeLeft = Math.floor((timeEnd - Date.now()) / 1000);
+    if (timeLeft < 0 ) { 
+      clearInterval(x); 
+      document.getElementById("img-start").setAttribute("src", "images/start.png");
+      document.getElementById("refresh").style.opacity = "0.2";
+      document.getElementById("edit").style.opacity = "1";
+      InsertNumbers();
+      return; 
+    }
+    var hoursLeft = Math.floor( timeLeft / 3600 );
+    var minutesLeft = Math.floor( (timeLeft % 3600) / 60 ) ;
+    var secondsLeft = timeLeft % 60;
+    $('#hours').html( hoursLeft < 10 ? '0' + hoursLeft : hoursLeft);
+    $('#minutes').html( minutesLeft < 10 ? '0' + minutesLeft : minutesLeft);
+    $('#seconds').html( secondsLeft < 10 ? '0' + secondsLeft : secondsLeft);
+  }, 100);
+
+
+  // timeLeft = Math.floor((timeEnd - Date.now()) / 1000);
+  // $('#div').html((timeLeft < 10 ? '0' + timeLeft : timeLeft) + " seconds");
+  // var x = setInterval(function () { timerWork(); }, 100);
+  // if (pause) {
+  //   clearInterval(x);
+
+
+  // } else if (refresh) {
+  //   return;
+  // }
+  // else if (timeLeft < 0) {
+  //   return;
+  // }
+
+
+}
+
+function TimerPause() {
+  pause = true;
+}
+
+function StartTimer(time) {
+  var width = 100;
+  var element = document.getElementById("timeLeftBar");
+  var x = setInterval(changeWidth, 10);
+  function changeWidth() {
+    if (width <= 0) {
+      clearInterval(x);
+      document.getElementById("img-start").setAttribute("src", "images/start.png");
+      document.getElementById("edit").style.opacity = "1";
+      document.getElementById("refresh").style.opacity = "0.2";
+      element.style.width = '100%';
+    } else {
+      width = width - (100 / time / 100);
+      element.style.width = width + '%';
+    }
+  }
+}
