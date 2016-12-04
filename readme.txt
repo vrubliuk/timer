@@ -1,3 +1,3 @@
 Simple timer application
 
-Available soon on: https://vrubliuk.github.io/timer/
+Available on: https://vrubliuk.github.io/timer/
