@@ -95,6 +95,7 @@ document.getElementById("edit").onclick = function () {
     document.getElementById("img-edit").setAttribute("src", "images/edit.png");
     document.getElementById("start-stop").style.opacity = "1";
     document.getElementById("refresh").style.opacity = "0.2";
+    document.getElementById("timeLeftBar").style.width = '100%';
 
     var hours = document.getElementById("hoursInput").value;
     var minutes = document.getElementById("minutesInput").value;
@@ -426,6 +427,7 @@ document.getElementById("start-stop").onclick = function () {
     document.getElementById("edit").style.opacity = "0.2";
     document.getElementById("refresh").style.opacity = "1";
     TimerWork();
+
     // StartTimer(5);
   } else if (x == "images/stop.png" && active) {
     document.getElementById("img-start").setAttribute("src", "images/start.png");
@@ -447,28 +449,50 @@ function countPeriodInSeconds(hours, minutes, seconds) {
 }
 
 function TimerWork() {
+  pause = false;
   var hours = parseInt(document.getElementById("hours").innerHTML);
   var minutes = parseInt(document.getElementById("minutes").innerHTML);
   var seconds = parseInt(document.getElementById("seconds").innerHTML);
   var periodInSeconds = countPeriodInSeconds(hours, minutes, seconds);
   var timeEnd = Date.now() + periodInSeconds * 1000;
+
+
+  var hoursInitial = parseInt(localStorage.getItem('h'));
+  var minutesInitial = parseInt(localStorage.getItem('m'));
+  var secondsInitial = parseInt(localStorage.getItem('s'));
+  var periodInSecondsInitial = countPeriodInSeconds(hoursInitial, minutesInitial, secondsInitial);
+  var element = document.getElementById("timeLeftBar");
+
   var x = window.setInterval(function () {
     var timeLeft = Math.floor((timeEnd - Date.now()) / 1000);
+
+    var width = (timeLeft/periodInSecondsInitial ) *100;
+    element.style.width = width + '%';
+
+
     if (timeLeft < 0 ) { 
+       PlayAudio();
       clearInterval(x); 
+      // PlayAudio();
       document.getElementById("img-start").setAttribute("src", "images/start.png");
       document.getElementById("refresh").style.opacity = "0.2";
       document.getElementById("edit").style.opacity = "1";
+      element.style.width = '100%';
       InsertNumbers();
       return; 
+    } else if (pause) {
+      clearInterval(x); 
+      return;
     }
+
     var hoursLeft = Math.floor( timeLeft / 3600 );
     var minutesLeft = Math.floor( (timeLeft % 3600) / 60 ) ;
     var secondsLeft = timeLeft % 60;
     $('#hours').html( hoursLeft < 10 ? '0' + hoursLeft : hoursLeft);
     $('#minutes').html( minutesLeft < 10 ? '0' + minutesLeft : minutesLeft);
     $('#seconds').html( secondsLeft < 10 ? '0' + secondsLeft : secondsLeft);
-  }, 100);
+  }, 200);
+
 
 
   // timeLeft = Math.floor((timeEnd - Date.now()) / 1000);
@@ -491,6 +515,24 @@ function TimerWork() {
 function TimerPause() {
   pause = true;
 }
+
+
+function PlayAudio() { 
+    var x = document.getElementById("alarm");
+    x.play(); 
+} 
+
+
+
+
+
+
+
+
+
+
+
+
 
 function StartTimer(time) {
   var width = 100;
