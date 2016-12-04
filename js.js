@@ -16,13 +16,13 @@ function ShowProgressBar() {
 function HideProgressBar() {
   document.getElementById("timeFullBar").style.display = "none";
 }
+
 window.onload = function () {
   InsertInitialColor();
   ShowTimer();
   InsertNumbers();
   document.getElementById("refresh").style.opacity = "0.2";
 };
-
 
 function Hover(element) {
   document.getElementById(element).onmouseover = function () {
@@ -33,7 +33,6 @@ function Hover(element) {
       document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0)";
     }
   };
-
   document.getElementById(element).onmouseout = function () {
     var x = ElementIsActive(element);
     if (x) {
@@ -42,9 +41,9 @@ function Hover(element) {
     else {
       document.getElementById(element).style.backgroundColor = "rgba(255,255,255,0)";
     }
-
   };
 }
+
 Hover("refresh");
 Hover("start-stop");
 Hover("edit");
@@ -52,7 +51,6 @@ Hover("edit");
 //HIDE HEADER AND FOOTER IF WINDOW IS SMALL
 window.addEventListener("resize", function () {
   var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
   if (h <= 400) {
     document.getElementById("footer").style.display = "none";
     document.getElementById("header").style.display = "none";
@@ -60,9 +58,7 @@ window.addEventListener("resize", function () {
     document.getElementById("footer").removeAttribute("style");
     document.getElementById("header").removeAttribute("style");
   }
-
 });
-
 
 function ElementIsActive(element) {
   var x = document.getElementById(element);
@@ -72,6 +68,7 @@ function ElementIsActive(element) {
     return true;
   }
 }
+
 //WHEN CLICK EDIT/DONE BUTTON
 document.getElementById("edit").onclick = function () {
   var x = document.getElementById("img-edit").getAttribute("src");
@@ -85,8 +82,6 @@ document.getElementById("edit").onclick = function () {
     document.getElementById("img-edit").setAttribute("src", "images/done.png");
     document.getElementById("edit").style.opacity = "0.2";
     document.getElementById("refresh").style.opacity = "1";
-
-
   } else if (x == "images/done.png" && active) {
     HideInputField();
     ShowTimer();
@@ -96,28 +91,22 @@ document.getElementById("edit").onclick = function () {
     document.getElementById("start-stop").style.opacity = "1";
     document.getElementById("refresh").style.opacity = "0.2";
     document.getElementById("timeLeftBar").style.width = '100%';
-
     var hours = document.getElementById("hoursInput").value;
     var minutes = document.getElementById("minutesInput").value;
     var seconds = document.getElementById("secondsInput").value;
     var corectedHours = CorrectInputValue(hours);
     var corectedMinutes = CorrectInputValue(minutes);
     var corectedSeconds = CorrectInputValue(seconds);
-
     document.getElementById("hours").innerHTML = corectedHours;
     document.getElementById("minutes").innerHTML = corectedMinutes;
     document.getElementById("seconds").innerHTML = corectedSeconds;
     localStorage.setItem("h", corectedHours);
     localStorage.setItem("m", corectedMinutes);
     localStorage.setItem("s", corectedSeconds);
-
     document.getElementById("hoursInput").value = "0";
     document.getElementById("minutesInput").value = "0";
     document.getElementById("secondsInput").value = "0";
-
   }
-
-
 
   function CorrectInputValue(value) {
     var x = value.length;
@@ -128,9 +117,8 @@ document.getElementById("edit").onclick = function () {
       return value;
     }
   }
-
-
 };
+
 //WHEN CLICK REFRESH/BACK BUTTON
 document.getElementById("refresh").onclick = function () {
   var x = document.getElementById("img-refresh").getAttribute("src");
@@ -143,16 +131,25 @@ document.getElementById("refresh").onclick = function () {
     document.getElementById("img-edit").setAttribute("src", "images/edit.png");
     document.getElementById("start-stop").style.opacity = "1";
     document.getElementById("edit").style.opacity = "1";
-    document.getElementById("refresh").style.opacity = "0.2";
     document.getElementById("hoursInput").value = "0";
     document.getElementById("minutesInput").value = "0";
     document.getElementById("secondsInput").value = "0";
-
+    var hours = parseInt(document.getElementById("hours").innerHTML);
+    var minutes = parseInt(document.getElementById("minutes").innerHTML);
+    var seconds = parseInt(document.getElementById("seconds").innerHTML);
+    var periodInSeconds = countPeriodInSeconds(hours, minutes, seconds);
+    var hoursInitial = parseInt(localStorage.getItem('h'));
+    var minutesInitial = parseInt(localStorage.getItem('m'));
+    var secondsInitial = parseInt(localStorage.getItem('s'));
+    var periodInSecondsInitial = countPeriodInSeconds(hoursInitial, minutesInitial, secondsInitial);
+    if (periodInSeconds < periodInSecondsInitial) {
+      document.getElementById("refresh").style.opacity = "1";
+    } else {
+      document.getElementById("refresh").style.opacity = "0.2";
+    }
   } else if (x == "images/refresh.png" && active) {
-    //add LOGIC for timer
-
+    TimerRefresh();
   }
-
 };
 
 //INPUT VALIDATION. ONLY DIGITS ARE ALLOWED TO BE ENTERED
@@ -213,7 +210,6 @@ document.getElementById("secondsInput").onkeypress = function () {
   }
 };
 
-
 //MAKE SAVE BUTTON ACTIVE ONLY IF TIME IS ENTERED AND MORE THAN ZERO 
 function checkHours() {
   var hours = document.getElementById("hoursInput").value;
@@ -248,12 +244,11 @@ function checkEntered() {
   var z = checkSeconds();
   if (x || y || z) {
     document.getElementById("edit").style.opacity = "1";
-
   } else if (!x && !y && !z) {
-    document.getElementById("edit").style.opacity = "0.3";
-
+    document.getElementById("edit").style.opacity = "0.2";
   }
 }
+
 //INSERT BACKGROUND COLORS
 var color = "#0099bc";
 function InsertInitialColor() {
@@ -280,7 +275,6 @@ function InsertInitialColor() {
   document.getElementById("minutesInput").style.backgroundColor = color;
   document.getElementById("secondsInput").style.backgroundColor = color;
 }
-// InsertInitialColor();
 
 //CHANGE BACKGROUND COLORS
 document.getElementById("color1").onclick = function () {
@@ -414,10 +408,6 @@ function InsertNumbers() {
   InsertSeconds();
 }
 
-
-
-
-
 //WHEN CLICK START-STOP BUTTON
 document.getElementById("start-stop").onclick = function () {
   var x = document.getElementById("img-start").getAttribute("src");
@@ -427,21 +417,15 @@ document.getElementById("start-stop").onclick = function () {
     document.getElementById("edit").style.opacity = "0.2";
     document.getElementById("refresh").style.opacity = "1";
     TimerWork();
-
-    // StartTimer(5);
   } else if (x == "images/stop.png" && active) {
     document.getElementById("img-start").setAttribute("src", "images/start.png");
     document.getElementById("edit").style.opacity = "1";
-
     TimerPause();
-
   }
 };
 
-
 var pause = false;
 var refresh = false;
-
 
 function countPeriodInSeconds(hours, minutes, seconds) {
   var PeriodInSeconds = hours * 3600 + minutes * 60 + seconds;
@@ -450,104 +434,71 @@ function countPeriodInSeconds(hours, minutes, seconds) {
 
 function TimerWork() {
   pause = false;
+  refresh = false;
   var hours = parseInt(document.getElementById("hours").innerHTML);
   var minutes = parseInt(document.getElementById("minutes").innerHTML);
   var seconds = parseInt(document.getElementById("seconds").innerHTML);
   var periodInSeconds = countPeriodInSeconds(hours, minutes, seconds);
   var timeEnd = Date.now() + periodInSeconds * 1000;
-
-
   var hoursInitial = parseInt(localStorage.getItem('h'));
   var minutesInitial = parseInt(localStorage.getItem('m'));
   var secondsInitial = parseInt(localStorage.getItem('s'));
   var periodInSecondsInitial = countPeriodInSeconds(hoursInitial, minutesInitial, secondsInitial);
   var element = document.getElementById("timeLeftBar");
-
   var x = window.setInterval(function () {
     var timeLeft = Math.floor((timeEnd - Date.now()) / 1000);
-
-    var width = (timeLeft/periodInSecondsInitial ) *100;
+    var width = (timeLeft / periodInSecondsInitial) * 100;
     element.style.width = width + '%';
-
-
-    if (timeLeft < 0 ) { 
-       PlayAudio();
-      clearInterval(x); 
-      // PlayAudio();
+    if (timeLeft < 0) {
+      PlayAudio();
+      clearInterval(x);
       document.getElementById("img-start").setAttribute("src", "images/start.png");
       document.getElementById("refresh").style.opacity = "0.2";
       document.getElementById("edit").style.opacity = "1";
       element.style.width = '100%';
       InsertNumbers();
-      return; 
+      return;
     } else if (pause) {
-      clearInterval(x); 
+      clearInterval(x);
+      return;
+    } else if (refresh) {
+      clearInterval(x);
+      document.getElementById("img-start").setAttribute("src", "images/start.png");
+      document.getElementById("refresh").style.opacity = "0.2";
+      document.getElementById("edit").style.opacity = "1";
+      element.style.width = '100%';
+      InsertNumbers();
       return;
     }
-
-    var hoursLeft = Math.floor( timeLeft / 3600 );
-    var minutesLeft = Math.floor( (timeLeft % 3600) / 60 ) ;
+    var hoursLeft = Math.floor(timeLeft / 3600);
+    var minutesLeft = Math.floor((timeLeft % 3600) / 60);
     var secondsLeft = timeLeft % 60;
-    $('#hours').html( hoursLeft < 10 ? '0' + hoursLeft : hoursLeft);
-    $('#minutes').html( minutesLeft < 10 ? '0' + minutesLeft : minutesLeft);
-    $('#seconds').html( secondsLeft < 10 ? '0' + secondsLeft : secondsLeft);
+    $('#hours').html(hoursLeft < 10 ? '0' + hoursLeft : hoursLeft);
+    $('#minutes').html(minutesLeft < 10 ? '0' + minutesLeft : minutesLeft);
+    $('#seconds').html(secondsLeft < 10 ? '0' + secondsLeft : secondsLeft);
   }, 200);
-
-
-
-  // timeLeft = Math.floor((timeEnd - Date.now()) / 1000);
-  // $('#div').html((timeLeft < 10 ? '0' + timeLeft : timeLeft) + " seconds");
-  // var x = setInterval(function () { timerWork(); }, 100);
-  // if (pause) {
-  //   clearInterval(x);
-
-
-  // } else if (refresh) {
-  //   return;
-  // }
-  // else if (timeLeft < 0) {
-  //   return;
-  // }
-
-
 }
 
 function TimerPause() {
   pause = true;
+  refresh = false;
 }
 
-
-function PlayAudio() { 
-    var x = document.getElementById("alarm");
-    x.play(); 
-} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-function StartTimer(time) {
-  var width = 100;
-  var element = document.getElementById("timeLeftBar");
-  var x = setInterval(changeWidth, 10);
-  function changeWidth() {
-    if (width <= 0) {
-      clearInterval(x);
-      document.getElementById("img-start").setAttribute("src", "images/start.png");
-      document.getElementById("edit").style.opacity = "1";
-      document.getElementById("refresh").style.opacity = "0.2";
-      element.style.width = '100%';
-    } else {
-      width = width - (100 / time / 100);
-      element.style.width = width + '%';
-    }
+function TimerRefresh() {
+  if (!pause) {
+    pause = false;
+    refresh = true;
+  } else if (pause) {
+    document.getElementById("img-start").setAttribute("src", "images/start.png");
+    document.getElementById("refresh").style.opacity = "0.2";
+    document.getElementById("edit").style.opacity = "1";
+    document.getElementById("timeLeftBar").style.width = '100%';
+    InsertNumbers();
   }
+}
+
+//PLAY ALARM WHEN TIMER IS ZERO
+function PlayAudio() {
+  var x = document.getElementById("alarm");
+  x.play();
 }

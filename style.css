@@ -1,94 +1,67 @@
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  /*background-color: #038387;*/
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden;
-}
-
-/*#color1:hover, #color2:hover, #color3:hover, #color4:hover, #color5:hover {
-  border: solid white 2px;
-} */
-
-main {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /*overflow: auto;*/
-}
-#timer {
-  font-size: 0px;
-  text-align: center;
-  font-weight: bold;
-  color: white;
-  white-space:nowrap;
-}
-#timer>span {
-  font-size: 30vmin;
-}
-
-#inputField {
- margin: 0px;
- padding: 0px;
- color: #ffffff;
- /*border: solid black 1px;*/
- text-align: center;
- 
-}
-.inputBox {
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+  }
+  main {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #timer {
+    font-size: 0px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    white-space:nowrap;
+  }
+  #timer>span {
+    font-size: 30vmin;
+  }
+  #inputField {
+   margin: 0px;
+   padding: 0px;
+   color: #ffffff;
+   text-align: center;
+ }
+ .inputBox {
   margin: 0px;
- padding: 0px;
-font-size: 0px;
-display: inline-block;
+  padding: 0px;
+  font-size: 0px;
+  display: inline-block;
 }
 
 #hoursInput, #minutesInput, #secondsInput {
   border: solid rgba(255,255,255,0.1) 2px;
   display: inline-block;
-   height:20vmin;
+  height:20vmin;
   width: 20vmin;
   font-size: 15vmin;
   font-weight: lighter;
   color: #ffffff;
   text-align: center;
-  /*background-color: #038387;*/
-
 }
 #inputFieldTitle {
   font-size: 7vmin;
 
 }
-
 #hoursTitle, #minutesTitle, #secondsTitle {
   font-size: 5vmin;
 }
-
-
-
- /*input {
-  height:30vmin;
-  width: 30vmin;
-  font-size: 25vmin;;
-  font-weight: lighter;
-  color: #666666;
-  text-align: center;
-}*/
-
 header {
   top: 0px;
   width: 100%;
   min-width: 320px;
   position: absolute;
   text-align: center;
-  /*border: solid black 1px;*/
-  /*padding-top: 20px;*/
   z-index: 1;
 }
 #color1 {
@@ -108,7 +81,7 @@ header {
   display: inline-block;
   border-radius: 50%;
   border: solid rgba(255,255,255,0.1) 2px;
-    margin: 10px;
+  margin: 10px;
 }
 #color3 {
   background-color: #0099bc;
@@ -120,42 +93,31 @@ header {
   margin: 10px;
 }
 #color4 {
-   background-color: #038387;
-  height: 48px;
-  width: 48px;
-  display: inline-block;
-border-radius: 50%;
-border: solid rgba(255,255,255,0.1) 2px;
-  margin: 10px;
+ background-color: #038387;
+ height: 48px;
+ width: 48px;
+ display: inline-block;
+ border-radius: 50%;
+ border: solid rgba(255,255,255,0.1) 2px;
+ margin: 10px;
 }
 #color5 {
   background-color: #ffb900;
   height: 48px;
   width: 48px;
   display: inline-block;
-border-radius: 50%;
-border: solid rgba(255,255,255,0.1) 2px;
+  border-radius: 50%;
+  border: solid rgba(255,255,255,0.1) 2px;
   margin: 10px;
 }
-
-
-
 footer {
   height: 125px;
   width: 100%;
-  /*background-color: #dcdcdc;*/
-  /*background-color: #038387;*/
   bottom: 0px;
   min-width: 320px;
-  
-
-position: absolute;
-text-align: center;
+  position: absolute;
+  text-align: center;
 }
-/*#buttons {
-  display: inline-block;
-}*/
-
 #refresh {
   height: 48px;
   width: 48px;
@@ -184,19 +146,15 @@ text-align: center;
 #img-start, #img-stop {
   margin-top: 20px; 
 }
-
 #timeFullBar {
   width: 100%;
   height: 30px;
   bottom: 0px;
   position: absolute;
   background-color:rgba(255,255,255,0.1);
-
 }
-
 #timeLeftBar {
-background-color:#ffffff;
-width: 100%;
-height: 100%;
-/*opacity: 0.1;*/
+  background-color:#ffffff;
+  width: 100%;
+  height: 100%;
 }

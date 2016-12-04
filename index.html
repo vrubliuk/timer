@@ -6,20 +6,15 @@
   <link href="style.css" rel="stylesheet">
 </head>
 
-<body id="body" >
-  
-  <header id="header" >
-    <div id="color1" ></div>
-    <div id="color2" ></div>
-    <div id="color3" ></div>
-    <div id="color4" ></div>
-    <div id="color5" ></div>
+<body id="body">
+  <header id="header">
+    <div id="color1"></div>
+    <div id="color2"></div>
+    <div id="color3"></div>
+    <div id="color4"></div>
+    <div id="color5"></div>
   </header>
-
-
-
   <main>
-
     <div id="timer" style="display:none">
       <span id="hours"></span>
       <span>:</span>
@@ -27,34 +22,25 @@
       <span>:</span>
       <span id="seconds"></span>
     </div>
-
     <div id="inputField" style="display:none">
       <div id="inputFieldTitle"> new time </div>
-      <div class="inputBox" >
-        <input id="hoursInput" class="innerBox"  type="text" maxlength="2" value="0">
-          <br>
-          <span id="hoursTitle" > hours</span>
-  
-      </div>
-      <div class="inputBox" >
-        <input id="minutesInput"  class="innerBox"  type="text" maxlength="2" value="0">
+      <div class="inputBox">
+        <input id="hoursInput" class="innerBox" type="text" maxlength="2" value="0">
         <br>
-        <span id="minutesTitle"  > minutes</span>
+        <span id="hoursTitle"> hours</span>
       </div>
-      <div class="inputBox" >
-        <input id="secondsInput" class="innerBox"  type="text" maxlength="2" value="0">
+      <div class="inputBox">
+        <input id="minutesInput" class="innerBox" type="text" maxlength="2" value="0">
         <br>
-        <span id="secondsTitle"  > seconds</span>
+        <span id="minutesTitle"> minutes</span>
+      </div>
+      <div class="inputBox">
+        <input id="secondsInput" class="innerBox" type="text" maxlength="2" value="0">
+        <br>
+        <span id="secondsTitle"> seconds</span>
       </div>
     </div>
-
   </main>
-
-
-
-
-
-
   <footer id="footer">
     <div id="buttons">
       <div id="refresh">
@@ -64,22 +50,16 @@
         <img id="img-start" src="images/start.png">
       </div>
       <div id="edit">
-        <img id="img-edit" src="images/edit.png" >
+        <img id="img-edit" src="images/edit.png">
       </div>
-
-
     </div>
-
     <div id="timeFullBar">
       <div id="timeLeftBar"></div>
     </div>
-
   </footer>
-
   <audio id="alarm">
-  <source src="audio/alarm.mp3 " type="audio/mpeg">
+    <source src="audio/alarm.mp3 " type="audio/mpeg">
   </audio>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="js.js"></script>
 </body>
