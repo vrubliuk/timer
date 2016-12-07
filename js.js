@@ -21,6 +21,7 @@ window.onload = function () {
   InsertInitialColor();
   ShowTimer();
   InsertNumbers();
+  InsertVolumeSetting();
   document.getElementById("refresh").style.opacity = "0.2";
 };
 
@@ -519,14 +520,30 @@ function PlayAudio() {
 }
 
 //TURN ON/OFF SOUND ALARM
-var volume = false;
+var volume;
+function InsertVolumeSetting() {
+  if (localStorage.getItem("volume") !== null) {
+    volume = localStorage.getItem('volume');
+    if (volume === 'true') {
+      document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-o");
+    } else if (volume === 'false') {
+      document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-slash-o");
+    }
+  } else {
+    document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-slash-o");
+     volume = false;
+     localStorage.setItem("volume", volume);
+  }
+}
 document.getElementById("volume").onclick = function () {
   var x = document.getElementById("volumeIcon").getAttribute("class");
   if (x === "fa fa-bell-slash-o") {
     document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-o");
     volume = true;
+    localStorage.setItem("volume", volume);
   } else if (x === "fa fa-bell-o") {
     document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-slash-o");
     volume = false;
+    localStorage.setItem("volume", volume);
   }
 };
