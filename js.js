@@ -58,6 +58,12 @@ window.addEventListener("resize", function () {
     document.getElementById("footer").removeAttribute("style");
     document.getElementById("header").removeAttribute("style");
   }
+  var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  if (w <= 800) {
+    document.getElementById("volume").style.display = "none";
+  } else {
+    document.getElementById("volume").removeAttribute("style");
+  }
 });
 
 function ElementIsActive(element) {
@@ -450,14 +456,25 @@ function TimerWork() {
     var width = (timeLeft / periodInSecondsInitial) * 100;
     element.style.width = width + '%';
     if (timeLeft < 0) {
-      PlayAudio();
-      clearInterval(x);
-      document.getElementById("img-start").setAttribute("src", "images/start.png");
-      document.getElementById("refresh").style.opacity = "0.2";
-      document.getElementById("edit").style.opacity = "1";
-      element.style.width = '100%';
-      InsertNumbers();
-      return;
+      if (volume === false) {
+        alert("Time is up");
+        clearInterval(x);
+        document.getElementById("img-start").setAttribute("src", "images/start.png");
+        document.getElementById("refresh").style.opacity = "0.2";
+        document.getElementById("edit").style.opacity = "1";
+        element.style.width = '100%';
+        InsertNumbers();
+        return;
+      } else if (volume === true) {
+        PlayAudio();
+        clearInterval(x);
+        document.getElementById("img-start").setAttribute("src", "images/start.png");
+        document.getElementById("refresh").style.opacity = "0.2";
+        document.getElementById("edit").style.opacity = "1";
+        element.style.width = '100%';
+        InsertNumbers();
+        return;
+      }
     } else if (pause) {
       clearInterval(x);
       return;
@@ -478,12 +495,10 @@ function TimerWork() {
     $('#seconds').html(secondsLeft < 10 ? '0' + secondsLeft : secondsLeft);
   }, 200);
 }
-
 function TimerPause() {
   pause = true;
   refresh = false;
 }
-
 function TimerRefresh() {
   if (!pause) {
     pause = false;
@@ -502,3 +517,16 @@ function PlayAudio() {
   var x = document.getElementById("alarm");
   x.play();
 }
+
+//TURN ON/OFF SOUND ALARM
+var volume = false;
+document.getElementById("volume").onclick = function () {
+  var x = document.getElementById("volumeIcon").getAttribute("class");
+  if (x === "fa fa-bell-slash-o") {
+    document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-o");
+    volume = true;
+  } else if (x === "fa fa-bell-o") {
+    document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-slash-o");
+    volume = false;
+  }
+};

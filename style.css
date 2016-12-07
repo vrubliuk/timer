@@ -158,3 +158,20 @@ footer {
   width: 100%;
   height: 100%;
 }
+#volume {
+  height: 48px;
+  width: 48px;
+  right: 0px;
+  position: absolute;
+  margin: 10px;
+  z-index: 2;
+  text-align: center;
+}
+#volumeIcon{
+  color: white; 
+  font-size: 20px;
+  margin-top: 14px;
+}
+#volume:hover {
+  background-color:rgba(255,255,255,0.1);
+}
