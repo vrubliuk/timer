@@ -457,7 +457,7 @@ function TimerWork() {
     var width = (timeLeft / periodInSecondsInitial) * 100;
     element.style.width = width + '%';
     if (timeLeft < 0) {
-      if (volume === false) {
+      if (volume === false  ) {
         alert("Time is up");
         clearInterval(x);
         document.getElementById("img-start").setAttribute("src", "images/start.png");
@@ -525,8 +525,10 @@ function InsertVolumeSetting() {
   if (localStorage.getItem("volume") !== null) {
     volume = localStorage.getItem('volume');
     if (volume === 'true') {
+      volume = true;
       document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-o");
     } else if (volume === 'false') {
+      volume = false;
       document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-slash-o");
     }
   } else {
