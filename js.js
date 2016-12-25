@@ -113,6 +113,7 @@ document.getElementById("edit").onclick = function () {
     document.getElementById("hoursInput").value = "0";
     document.getElementById("minutesInput").value = "0";
     document.getElementById("secondsInput").value = "0";
+    closingMessage = false;
   }
 
   function CorrectInputValue(value) {
@@ -433,6 +434,7 @@ document.getElementById("start-stop").onclick = function () {
 
 var pause = false;
 var refresh = false;
+var closingMessage = false;
 
 function countPeriodInSeconds(hours, minutes, seconds) {
   var PeriodInSeconds = hours * 3600 + minutes * 60 + seconds;
@@ -442,6 +444,7 @@ function countPeriodInSeconds(hours, minutes, seconds) {
 function TimerWork() {
   pause = false;
   refresh = false;
+  closingMessage = true;
   var hours = parseInt(document.getElementById("hours").innerHTML);
   var minutes = parseInt(document.getElementById("minutes").innerHTML);
   var seconds = parseInt(document.getElementById("seconds").innerHTML);
@@ -457,7 +460,8 @@ function TimerWork() {
     var width = (timeLeft / periodInSecondsInitial) * 100;
     element.style.width = width + '%';
     if (timeLeft < 0) {
-      if (volume === false  ) {
+      closingMessage = false;
+      if (volume === false) {
         alert("Time is up");
         clearInterval(x);
         document.getElementById("img-start").setAttribute("src", "images/start.png");
@@ -499,8 +503,10 @@ function TimerWork() {
 function TimerPause() {
   pause = true;
   refresh = false;
+  closingMessage = true;
 }
 function TimerRefresh() {
+  closingMessage = false;
   if (!pause) {
     pause = false;
     refresh = true;
@@ -533,8 +539,8 @@ function InsertVolumeSetting() {
     }
   } else {
     document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-slash-o");
-     volume = false;
-     localStorage.setItem("volume", volume);
+    volume = false;
+    localStorage.setItem("volume", volume);
   }
 }
 document.getElementById("volume").onclick = function () {
@@ -547,5 +553,12 @@ document.getElementById("volume").onclick = function () {
     document.getElementById("volumeIcon").setAttribute("class", "fa fa-bell-slash-o");
     volume = false;
     localStorage.setItem("volume", volume);
+  }
+};
+
+//PREVENT FROM CLOSING TAB WHEN THE TIMER IS RUNNING
+window.onbeforeunload = function () {
+  if (closingMessage) {
+    return "The timer is running. Do you really want to leave?";
   }
 };
