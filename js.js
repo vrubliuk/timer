@@ -472,12 +472,14 @@ function TimerWork() {
         return;
       } else if (volume === true) {
         PlayAudio();
+        document.getElementById("alarm").onended = function() {
+          document.getElementById("img-start").setAttribute("src", "images/start.png");
+          document.getElementById("refresh").style.opacity = "0.2";
+          document.getElementById("edit").style.opacity = "1";
+          element.style.width = '100%';
+          InsertNumbers();
+        };
         clearInterval(x);
-        document.getElementById("img-start").setAttribute("src", "images/start.png");
-        document.getElementById("refresh").style.opacity = "0.2";
-        document.getElementById("edit").style.opacity = "1";
-        element.style.width = '100%';
-        InsertNumbers();
         return;
       }
     } else if (pause) {
