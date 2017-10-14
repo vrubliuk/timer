@@ -458,6 +458,10 @@ function TimerWork() {
   var x = window.setInterval(function () {
     var timeLeft = Math.floor((timeEnd - Date.now()) / 1000);
     var width = (timeLeft / periodInSecondsInitial) * 100;
+    // smooth timer bar (high processor usage)
+    // var timeLeftMiliseconds = timeEnd - Date.now();
+    // var width = (timeLeftMiliseconds / (periodInSecondsInitial * 1000)) * 100;
+    // Interval time should be 1ms
     element.style.width = width + '%';
     if (timeLeft < 0) {
       closingMessage = false;
