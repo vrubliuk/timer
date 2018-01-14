@@ -1,129 +1,160 @@
-  body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden;
-  }
-  main {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #timer {
-    font-size: 0px;
-    text-align: center;
-    font-weight: bold;
-    color: white;
-    white-space:nowrap;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  min-width: 400px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#timer {
+  font-size: 0px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+}
+
+#timer>span {
+  font-size: 30vmin;
+}
+
+@media screen and (max-width: 1200px) {
   #timer>span {
-    font-size: 30vmin;
+    font-size: 20vmin;
   }
-  #inputField {
-   margin: 0px;
-   padding: 0px;
-   color: #ffffff;
-   text-align: center;
- }
- .inputBox {
+}
+
+@media screen and (max-width: 400px) {
+  #timer>span {
+    font-size: 80px;
+  }
+}
+
+#inputField {
+  margin: 0px;
+  padding: 0px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.inputBox {
   margin: 0px;
   padding: 0px;
   font-size: 0px;
   display: inline-block;
 }
 
-#hoursInput, #minutesInput, #secondsInput {
-  border: solid rgba(255,255,255,0.1) 2px;
+#hoursInput,
+#minutesInput,
+#secondsInput {
+  border: solid rgba(255, 255, 255, 0.1) 2px;
   display: inline-block;
-  height:20vmin;
+  height: 20vmin;
   width: 20vmin;
   font-size: 15vmin;
   font-weight: lighter;
   color: #ffffff;
   text-align: center;
 }
+
 #inputFieldTitle {
   font-size: 7vmin;
-
 }
-#hoursTitle, #minutesTitle, #secondsTitle {
+
+#hoursTitle,
+#minutesTitle,
+#secondsTitle {
   font-size: 5vmin;
 }
+
 header {
   top: 0px;
   width: 100%;
-  min-width: 320px;
+  min-width: 400px;
   position: absolute;
   text-align: center;
   z-index: 1;
 }
+
 #color1 {
   background-color: #e74856;
   height: 48px;
   width: 48px;
   display: inline-block;
   border-radius: 50%;
-  border: solid rgba(255,255,255,0.1) 2px;
+  border: solid rgba(255, 255, 255, 0.1) 2px;
   margin: 10px;
-
 }
+
 #color2 {
   background-color: #69797e;
   height: 48px;
   width: 48px;
   display: inline-block;
   border-radius: 50%;
-  border: solid rgba(255,255,255,0.1) 2px;
+  border: solid rgba(255, 255, 255, 0.1) 2px;
   margin: 10px;
 }
+
 #color3 {
   background-color: #0099bc;
   height: 48px;
   width: 48px;
   display: inline-block;
   border-radius: 50%;
-  border: solid rgba(255,255,255,0.1) 2px;
+  border: solid rgba(255, 255, 255, 0.1) 2px;
   margin: 10px;
 }
+
 #color4 {
- background-color: #038387;
- height: 48px;
- width: 48px;
- display: inline-block;
- border-radius: 50%;
- border: solid rgba(255,255,255,0.1) 2px;
- margin: 10px;
+  background-color: #038387;
+  height: 48px;
+  width: 48px;
+  display: inline-block;
+  border-radius: 50%;
+  border: solid rgba(255, 255, 255, 0.1) 2px;
+  margin: 10px;
 }
+
 #color5 {
   background-color: #ffb900;
   height: 48px;
   width: 48px;
   display: inline-block;
   border-radius: 50%;
-  border: solid rgba(255,255,255,0.1) 2px;
+  border: solid rgba(255, 255, 255, 0.1) 2px;
   margin: 10px;
 }
+
 footer {
   height: 125px;
   width: 100%;
   bottom: 0px;
-  min-width: 320px;
+  min-width: 400px;
   position: absolute;
   text-align: center;
 }
+
 #refresh {
   height: 48px;
   width: 48px;
   margin-top: 12px;
   display: inline-block;
 }
+
 #start-stop {
   height: 60px;
   width: 60px;
@@ -133,6 +164,7 @@ footer {
   border: 2px solid #ffffff;
   display: inline-block;
 }
+
 #edit {
   height: 48px;
   width: 48px;
@@ -140,24 +172,31 @@ footer {
   margin-top: 12px;
   display: inline-block;
 }
-#img-refresh, #img-edit {
-  margin-top: 14px; 
+
+#img-refresh,
+#img-edit {
+  margin-top: 14px;
 }
-#img-start, #img-stop {
-  margin-top: 20px; 
+
+#img-start,
+#img-stop {
+  margin-top: 20px;
 }
+
 #timeFullBar {
   width: 100%;
   height: 30px;
   bottom: 0px;
   position: absolute;
-  background-color:rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
+
 #timeLeftBar {
-  background-color:#ffffff;
+  background-color: #ffffff;
   width: 100%;
   height: 100%;
 }
+
 #volume {
   height: 48px;
   width: 48px;
@@ -167,11 +206,13 @@ footer {
   z-index: 2;
   text-align: center;
 }
-#volumeIcon{
-  color: white; 
+
+#volumeIcon {
+  color: white;
   font-size: 20px;
   margin-top: 14px;
 }
+
 #volume:hover {
-  background-color:rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
